@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(Trajtory_Planing_Lib)
+
+add_library(my_library SHARED ${PROJECT_SOURCE_DIR}/src/fifteen.c)
