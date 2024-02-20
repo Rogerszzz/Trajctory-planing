@@ -6,7 +6,6 @@
 
 void ThreeSegPreCal(double pos0, double pos1, double velMax, double accMax, ThreeSegPara* threeSegPara){
     
-    printf("1");
     double maxVel;
     double accT;
     double constT;
