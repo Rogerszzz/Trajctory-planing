@@ -21,8 +21,8 @@ typedef struct
 
 } ThreeSegPara;
 
-void ThreeSegPreCal(double pos0, double pos1, double velMax, double accMax, ThreeSegPara* threeSegPara);
+void ThreeSegPreCal(unsigned int freq, double pos0, double pos1, double velMax, double accMax, ThreeSegPara* threeSegPara);
 
-void ThreeSegHandler(unsigned int count, ThreeSegPara threeSegPara, TrajOut* trajOut);
+void ThreeSegHandler(unsigned int count, unsigned int freq, ThreeSegPara* threeSegPara, TrajOut* trajOut);
 
 #endif
