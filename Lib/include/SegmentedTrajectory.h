@@ -44,10 +44,26 @@ typedef struct
 
 typedef struct
 {
-    
+    double pos0;
+    double pos1;
+    double maxAcc;
+    double maxVel;
+    double maxJerk;
+
+    double jerkaccT;
+    double accT;
+    double accConstT;
+    double constT;
+    double decT;
+
+    unsigned int accTSamples;
+    unsigned int constTSamples;
+    unsigned int decTSamples;
+    unsigned int totalSamples;
+
 } FifteenSegPara;
 
-void TrapeziodPreCal(unsigned int freq, double pos0, double pos1, double velMax, double accMax, TrapeziodPara* trapeziodPara);
+void TrapeziodPreCal(unsigned int freq, SegmentedTrajectoryPrecalParam *trapeziodInput, TrapeziodPara* trapeziodPara);
 
 void TrapeziodHandler(unsigned int count, unsigned int freq, TrapeziodPara* trapeziodPara, TrajOut* trajOut);
 

@@ -5,30 +5,30 @@
 #include "common.h"
 
 
-void TrapeziodPreCal(unsigned int freq, double pos0, double pos1, double velMax, double accMax, TrapeziodPara* trapeziodPara){
+void TrapeziodPreCal(unsigned int freq, SegmentedTrajectoryPrecalParam *trapeziodInput, TrapeziodPara* trapeziodPara){
     
     double maxVel;
     double accT;
     double constT;
     double decT;
     
-    double absDist = fabs(pos1 - pos0);
-    unsigned short dir =  (pos1 - pos0) >= 0 ? (1) : (-1);
+    double absDist = fabs(trapeziodInput->pos1 - trapeziodInput->pos0);
+    unsigned short dir =  (trapeziodInput->pos1 - trapeziodInput->pos0) >= 0 ? (1) : (-1);
 
-    maxVel = velMax;
-    accT = maxVel / accMax;
+    maxVel = trapeziodInput->velMax;
+    accT = maxVel / trapeziodInput->accMax;
     double distOffset = absDist - accT * maxVel;
 
-    trapeziodPara->pos0 = pos0;
-    trapeziodPara->pos1 = pos1;
-    trapeziodPara->maxAcc = accMax;
+    trapeziodPara->pos0 = trapeziodInput->pos0;
+    trapeziodPara->pos1 = trapeziodInput->pos1;
+    trapeziodPara->maxAcc = trapeziodInput->accMax;
 
     if (distOffset > 0){
         constT = (absDist - accT * maxVel) / maxVel;
         decT = accT;
     } else{
-        maxVel = sqrt(absDist * accMax);
-        accT = maxVel / accMax;
+        maxVel = sqrt(absDist * trapeziodInput->accMax);
+        accT = maxVel / trapeziodInput->accMax;
         decT = accT;
         constT = 0;
     }
@@ -46,7 +46,7 @@ void TrapeziodPreCal(unsigned int freq, double pos0, double pos1, double velMax,
     trapeziodPara->accT = trapeziodPara->accTSamples / freq;
     trapeziodPara->constT = trapeziodPara->constTSamples / freq;
     trapeziodPara->decT = trapeziodPara->decTSamples / freq;
-    trapeziodPara->maxVel = trapeziodPara->accT * accMax;
+    trapeziodPara->maxVel = trapeziodPara->accT * trapeziodInput->accMax;
 
     return;
 }

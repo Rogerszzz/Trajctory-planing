@@ -9,5 +9,16 @@ typedef struct
     double jerk;
     double snap;
 } TrajOut;
+
+typedef struct
+{
+    double pos0;
+    double pos1;
+    double velMax;
+    double accMax;
+    double jerkMax;
+    double snapMax;
+} SegmentedTrajectoryPrecalParam;
+
  
 #endif
