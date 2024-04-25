@@ -9,7 +9,5 @@ typedef struct
     double jerk;
     double snap;
 } TrajOut;
-
-int add(int a, int b);
  
 #endif
